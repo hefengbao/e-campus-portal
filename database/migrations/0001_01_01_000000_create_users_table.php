@@ -12,11 +12,21 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->uuid('id')->primary()->comment('工号/学号');
+            $table->string('name')->comment('姓名');
+            $table->string('email')->nullable()->unique()->comment('邮箱地址');
+            $table->string('phone')->nullable()->unique()->comment('手机号码');
+            $table->string('id_card')->nullable()->comment('身份证号码');
+            $table->string('avatar')->nullable()->comment('头像');
+            $table->string('gender')->nullable()->comment('性别');
+            $table->string('category')->nullable()->comment('分类');
+            $table->string('department_id')->nullable()->comment('部门/系所 ID');
+            $table->string('department')->nullable()->comment('部门/系所');
+            $table->string('major_id')->nullable()->comment('专业 ID');
+            $table->string('major')->nullable()->comment('专业');
+            $table->string('class_id')->nullable()->comment('班级 ID');
+            $table->string('class')->nullable()->comment('班级');
+            $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
